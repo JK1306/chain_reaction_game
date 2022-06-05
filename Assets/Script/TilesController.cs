@@ -5,11 +5,18 @@ using UnityEngine.UI;
 
 public class TilesController : MonoBehaviour
 {
-    public int noOfAtom;
+    public int noOfAtom,
+                atomMovingSpeed;
     public GameObject singleAtom,
                         doubleAtom,
-                        tripleAtom;
+                        tripleAtom,
+                        fourAtom;
+    public AtomMoveDirection[] atomMovements;
+    public GameObject[] movingAtoms;
     GameObject currentActiveAtom;
+    Animator tileAnimator;
+    Vector3 atomObjectPosition;
+
     private void Start() {
         noOfAtom = 0;
         GetComponent<Button>().onClick.AddListener(IncreaseAtom);
@@ -33,17 +40,45 @@ public class TilesController : MonoBehaviour
                 tripleAtom.SetActive(true);
                 currentActiveAtom = tripleAtom;
                 break;
+            case 4:
+                fourAtom.SetActive(true);
+                currentActiveAtom = fourAtom;
+                break;
             default:
                 noOfAtom = 0;
                 break;
         }
+        ReleaseAtom();
     }
 
     void ReleaseAtom(){
+        if(noOfAtom == atomMovements.Length){
+            currentActiveAtom.SetActive(false);
 
+            for(int i=0; i<atomMovements.Length; i++){
+                switch(atomMovements[i]){
+                    case AtomMoveDirection.Left:
+                        // movingAtoms[i].transform.position.x += (atomMovingSpeed * Time.deltaTime);
+                        break;
+                }
+            }
+
+        }
     }
 
-    private void OnCollisionStay2D(Collision2D other) {
-        Debug.Log("Collision : "+other.contacts.Length);
+    IEnumerator StartAtomMovement(GameObject atomObject, AtomMoveDirection movementDirection){
+        while(true){
+            atomObjectPosition = atomObject.transform.position;
+            atomObjectPosition.x += (atomMovingSpeed * Time.deltaTime);
+            atomObject.transform.position = atomObjectPosition;
+        }
     }
+}
+
+
+public enum AtomMoveDirection{
+    Left,
+    Right,
+    Top,
+    Bottom
 }
