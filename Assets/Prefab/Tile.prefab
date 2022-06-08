@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 7230255332553062345}
   - component: {fileID: 4696678279735912091}
   - component: {fileID: 4309818236079745238}
+  - component: {fileID: 8781911207680318341}
   m_Layer: 5
   m_Name: Circle4
   m_TagString: Untagged
@@ -165,6 +166,18 @@ CircleCollider2D:
   m_Offset: {x: 0.36006165, y: -0.07362366}
   serializedVersion: 2
   m_Radius: 41.74095
+--- !u!114 &8781911207680318341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190783440167729177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0867e698246bac5478f366dba7e7abc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1281149150842783398
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +666,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2192798442571384779}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -686,10 +699,10 @@ MonoBehaviour:
   fourAtom: {fileID: 5033854254698861969}
   atomMovements: 02000000010000000300000000000000
   movingAtoms:
-  - {fileID: 7658053424824339488}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7610655333628992237}
+  - {fileID: 308914270144255558}
+  - {fileID: 45547390579261521}
+  - {fileID: 8781911207680318341}
 --- !u!1 &2293199754189550109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,6 +1035,7 @@ GameObject:
   - component: {fileID: 6286547592264423699}
   - component: {fileID: 4093172393790735808}
   - component: {fileID: 3288695276356572363}
+  - component: {fileID: 45547390579261521}
   m_Layer: 5
   m_Name: Circle3
   m_TagString: Untagged
@@ -1101,6 +1115,18 @@ CircleCollider2D:
   m_Offset: {x: 0.36006165, y: -0.07362366}
   serializedVersion: 2
   m_Radius: 41.74095
+--- !u!114 &45547390579261521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196081143054731711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0867e698246bac5478f366dba7e7abc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5592967331789326695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,6 +1213,7 @@ GameObject:
   - component: {fileID: 455101673656839993}
   - component: {fileID: 5808353495274653266}
   - component: {fileID: 6893508593158159585}
+  - component: {fileID: 308914270144255558}
   m_Layer: 5
   m_Name: Circle2
   m_TagString: Untagged
@@ -1266,6 +1293,18 @@ CircleCollider2D:
   m_Offset: {x: 0.36006165, y: -0.07362366}
   serializedVersion: 2
   m_Radius: 41.74095
+--- !u!114 &308914270144255558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580229176125377030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0867e698246bac5478f366dba7e7abc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6962679660667454114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,6 +1465,7 @@ GameObject:
   - component: {fileID: 9184641958884330417}
   - component: {fileID: 619179916693616272}
   - component: {fileID: 5574746470938115821}
+  - component: {fileID: 7610655333628992237}
   m_Layer: 5
   m_Name: Circle1
   m_TagString: Untagged
@@ -1505,6 +1545,18 @@ CircleCollider2D:
   m_Offset: {x: 0.36006165, y: -0.07362366}
   serializedVersion: 2
   m_Radius: 41.74095
+--- !u!114 &7610655333628992237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658053424824339488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0867e698246bac5478f366dba7e7abc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9141171146302117595
 GameObject:
   m_ObjectHideFlags: 0

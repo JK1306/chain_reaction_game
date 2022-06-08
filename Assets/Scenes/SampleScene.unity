@@ -4024,6 +4024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 5
   height: 5
+  atomMovementSpeed: 0.25
   tile: {fileID: 2192798442571384779, guid: 8d05bcddacf428242824f95581288be1, type: 3}
   parentGameObject: {fileID: 1818802901}
 --- !u!1 &1841891106

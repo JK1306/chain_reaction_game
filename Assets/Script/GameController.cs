@@ -5,10 +5,16 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public int width, height;
+    public float atomMovementSpeed;
     public GameObject tile, parentGameObject;
+    public static GameController instance;
     GameObject spawnTile;
     Vector3 spawnPosition;
     
+    private void Start() {
+        instance = this;
+    }
+
     void OnEnable() {
         // SpawnTiles();
     }

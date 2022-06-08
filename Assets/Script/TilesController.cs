@@ -12,7 +12,7 @@ public class TilesController : MonoBehaviour
                         tripleAtom,
                         fourAtom;
     public AtomMoveDirection[] atomMovements;
-    public GameObject[] movingAtoms;
+    public AtomController[] movingAtoms;
     GameObject currentActiveAtom;
     Animator tileAnimator;
     Vector3 atomObjectPosition;
@@ -54,24 +54,37 @@ public class TilesController : MonoBehaviour
     void ReleaseAtom(){
         if(noOfAtom == atomMovements.Length){
             currentActiveAtom.SetActive(false);
-
             for(int i=0; i<atomMovements.Length; i++){
-                switch(atomMovements[i]){
-                    case AtomMoveDirection.Left:
-                        // movingAtoms[i].transform.position.x += (atomMovingSpeed * Time.deltaTime);
-                        break;
+                for(int j=0; j<movingAtoms.Length; j++){
+                    if(!movingAtoms[j].gameObject.activeSelf){
+                        StartAtomMovement(movingAtoms[j], atomMovements[i]);
+                        return;
+                    }
                 }
             }
+            // StartAtomMovement
+            // for(int i=0; i<atomMovements.Length; i++){
+            //     switch(atomMovements[i]){
+            //         case AtomMoveDirection.Left:
+            //             // movingAtoms[i].transform.position.x += (atomMovingSpeed * Time.deltaTime);
+            //             break;
+            //     }
+            // }
 
         }
     }
 
-    IEnumerator StartAtomMovement(GameObject atomObject, AtomMoveDirection movementDirection){
-        while(true){
-            atomObjectPosition = atomObject.transform.position;
-            atomObjectPosition.x += (atomMovingSpeed * Time.deltaTime);
-            atomObject.transform.position = atomObjectPosition;
-        }
+    void StartAtomMovement(AtomController atomObject, AtomMoveDirection movementDirection){
+        atomObject.gameObject.SetActive(true);
+        atomObject.StartMovement(GameController.instance.atomMovementSpeed, movementDirection);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("Triggered from TilesController");
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        Debug.Log("Collision from TilesController");
     }
 }
 
