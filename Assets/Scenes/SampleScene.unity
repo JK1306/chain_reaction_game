@@ -9325,6 +9325,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePallete: {fileID: 7295824071374124565, guid: aaf4c4462e79160488de464191a780e0,
     type: 3}
+  singleAtom: {fileID: 7295824071374124565, guid: fed76f2689352a84cb8226d97a71dcd8,
+    type: 3}
+  doubleAtom: {fileID: 7295824071374124565, guid: fe4b1b90e0e095c4ab155313cfddc7ad,
+    type: 3}
+  tripleAtom: {fileID: 7295824071374124565, guid: ec97448359dd4c644b0cf956eb386fab,
+    type: 3}
   row: 5
   column: 5
   maxDistance: 10

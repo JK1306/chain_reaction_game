@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class TilePallerController : MonoBehaviour
 {
-    void Start()
-    {
-        
+    public int atomCount { get; private set; }
+    GameObject instantiatedObject;
+
+    private void Start() {
+        atomCount = 0;
     }
 
-    void Update()
-    {
-        
+    public void SetTileChild(GameObject atomGameObject){
+        atomCount++;
+        instantiatedObject = Instantiate(atomGameObject, gameObject.transform);
+    }
+
+    public void ResetAtomCount(){
+        atomCount = 0;
     }
 }

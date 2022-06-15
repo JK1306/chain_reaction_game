@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ChainGameController : MonoBehaviour
 {
-    public GameObject tilePallete;
+    public GameObject tilePallete, singleAtom, doubleAtom, tripleAtom;
     public int row, column;
     public float maxDistance;
     Vector3 clickedPosition;
     GameObject instantiatedObject;
+    TilePallerController tileController;
+
     void OnEnable()
     {
         
@@ -34,7 +36,23 @@ public class ChainGameController : MonoBehaviour
         Debug.DrawRay(clickedPosition, transform.TransformDirection(Vector3.forward));
         RaycastHit2D hitObject = Physics2D.Raycast(clickedPosition, transform.TransformDirection(Vector3.forward));
         if(hitObject){
-            hitObject.transform.GetComponent<SpriteRenderer>().sprite = null;
+            Debug.Log("Mouse Button clicked");
+            // hitObject.transform.GetComponent<SpriteRenderer>().sprite = null;
+            tileController = hitObject.transform.GetComponent<TilePallerController>();
+            switch(tileController.atomCount){
+                case 1:
+                    tileController.SetTileChild(singleAtom);
+                    break;
+                case 2:
+                    tileController.SetTileChild(doubleAtom);
+                    break;
+                case 3:
+                    tileController.SetTileChild(tripleAtom);
+                    break;
+                default:
+                    tileController.ResetAtomCount();
+                    break;
+            }
         }
         // if(Physics.Raycast(ray)){
         //     Debug.Log("Hit something");
