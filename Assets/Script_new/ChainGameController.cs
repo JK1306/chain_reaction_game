@@ -24,7 +24,7 @@ public class ChainGameController : MonoBehaviour
         // SpawnTilePallete();
     }
 
-    private void FixedUpdate() {
+    private void Update() {
         if(Input.GetMouseButtonDown(0)){
             MouseClicked();
         }
