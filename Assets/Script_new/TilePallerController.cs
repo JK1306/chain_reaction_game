@@ -6,17 +6,30 @@ public class TilePallerController : MonoBehaviour
 {
     public int atomCount { get; private set; }
     GameObject instantiatedObject;
+    int childCount;
 
     private void Start() {
         atomCount = 0;
     }
 
+    void DestroyChild(){
+        childCount = transform.childCount;
+        for(int i=0; i<childCount; i++){
+            Destroy(transform.GetChild(0).gameObject);
+        }
+    }
+
+    public void IncreaseAtomCount(){
+        ++atomCount;
+    }
+
     public void SetTileChild(GameObject atomGameObject){
-        atomCount++;
+        DestroyChild();
         instantiatedObject = Instantiate(atomGameObject, gameObject.transform);
     }
 
     public void ResetAtomCount(){
         atomCount = 0;
+        DestroyChild();
     }
 }

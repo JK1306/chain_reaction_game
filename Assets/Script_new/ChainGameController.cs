@@ -39,6 +39,7 @@ public class ChainGameController : MonoBehaviour
             Debug.Log("Mouse Button clicked");
             // hitObject.transform.GetComponent<SpriteRenderer>().sprite = null;
             tileController = hitObject.transform.GetComponent<TilePallerController>();
+            tileController.IncreaseAtomCount();
             switch(tileController.atomCount){
                 case 1:
                     tileController.SetTileChild(singleAtom);
