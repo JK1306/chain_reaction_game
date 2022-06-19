@@ -9334,6 +9334,7 @@ MonoBehaviour:
   row: 5
   column: 5
   maxDistance: 10
+  atomMovementSpeed: 0.5
 --- !u!1001 &1592793468
 PrefabInstance:
   m_ObjectHideFlags: 0

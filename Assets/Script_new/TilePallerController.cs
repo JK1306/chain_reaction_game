@@ -5,7 +5,9 @@ using UnityEngine;
 public class TilePallerController : MonoBehaviour
 {
     public int atomCount { get; private set; }
+    public AtomController movingAtom;
     GameObject instantiatedObject;
+    AtomController spawnedObject;
     int childCount;
 
     private void Start() {
@@ -31,5 +33,7 @@ public class TilePallerController : MonoBehaviour
     public void ResetAtomCount(){
         atomCount = 0;
         DestroyChild();
+        spawnedObject = Instantiate<AtomController>(movingAtom, gameObject.transform);
+        spawnedObject.StartMovement(ChainGameController.instance.atomMovementSpeed, AtomMoveDirection.Right);
     }
 }

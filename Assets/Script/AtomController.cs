@@ -8,6 +8,7 @@ public class AtomController : MonoBehaviour
     Vector3 atomPosition;
     bool canMove;
     AtomMoveDirection movementDir;
+    TilePallerController tileCouter;
     public void StartMovement(float speed, AtomMoveDirection direction){
         this.movementSpeed = speed;
         this.movementDir = direction;
@@ -36,5 +37,12 @@ public class AtomController : MonoBehaviour
 
     private void OnDisable() {
         canMove = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.TryGetComponent<TilePallerController>(out tileCouter)){
+            ChainGameController.instance.DisplayAtom(tileCouter);
+            Destroy(gameObject);
+        }
     }
 }

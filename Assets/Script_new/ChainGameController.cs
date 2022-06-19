@@ -6,27 +6,41 @@ public class ChainGameController : MonoBehaviour
 {
     public GameObject tilePallete, singleAtom, doubleAtom, tripleAtom;
     public int row, column;
-    public float maxDistance;
+    public float maxDistance, atomMovementSpeed;
     Vector3 clickedPosition;
     GameObject instantiatedObject;
     TilePallerController tileController;
+    public static ChainGameController instance;
 
-    void OnEnable()
-    {
-        
-        // Debug.Log("Screen Width : "+Screen.width);
-        // Debug.Log("Screen Height : "+Screen.height);
-        // Debug.Log("Pixel Width : "+Camera.main.pixelWidth);
-        // Debug.Log("Pixel Height : "+Camera.main.pixelHeight);
-
-        // spawnPosition = transform.position;
-        // Debug.Log("Screen Width : "+Camera.main.ScreenToWorldPoint());
-        // SpawnTilePallete();
+    private void Start() {
+        if(instance == null){
+            instance = this;
+        }else{
+            Destroy(gameObject);
+        }
     }
 
     private void Update() {
         if(Input.GetMouseButtonDown(0)){
             MouseClicked();
+        }
+    }
+
+    public void DisplayAtom(TilePallerController tileController){
+        tileController.IncreaseAtomCount();
+        switch(tileController.atomCount){
+            case 1:
+                tileController.SetTileChild(singleAtom);
+                break;
+            case 2:
+                tileController.SetTileChild(doubleAtom);
+                break;
+            case 3:
+                tileController.SetTileChild(tripleAtom);
+                break;
+            default:
+                tileController.ResetAtomCount();
+                break;
         }
     }
     
@@ -37,33 +51,8 @@ public class ChainGameController : MonoBehaviour
         RaycastHit2D hitObject = Physics2D.Raycast(clickedPosition, transform.TransformDirection(Vector3.forward));
         if(hitObject){
             Debug.Log("Mouse Button clicked");
-            // hitObject.transform.GetComponent<SpriteRenderer>().sprite = null;
             tileController = hitObject.transform.GetComponent<TilePallerController>();
-            tileController.IncreaseAtomCount();
-            switch(tileController.atomCount){
-                case 1:
-                    tileController.SetTileChild(singleAtom);
-                    break;
-                case 2:
-                    tileController.SetTileChild(doubleAtom);
-                    break;
-                case 3:
-                    tileController.SetTileChild(tripleAtom);
-                    break;
-                default:
-                    tileController.ResetAtomCount();
-                    break;
-            }
+            DisplayAtom(tileController);
         }
-        // if(Physics.Raycast(ray)){
-        //     Debug.Log("Hit something");
-        // }
     }
-
-    // private void OnDrawGizmos() {
-    //     Gizmos.DrawIcon(
-    //         clickedPosition,
-    //         "Mouse Clicked Position"
-    //     );
-    // }
 }
