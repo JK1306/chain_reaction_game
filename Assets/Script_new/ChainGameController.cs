@@ -47,10 +47,8 @@ public class ChainGameController : MonoBehaviour
     void MouseClicked(){
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.DrawRay(clickedPosition, transform.TransformDirection(Vector3.forward));
         RaycastHit2D hitObject = Physics2D.Raycast(clickedPosition, transform.TransformDirection(Vector3.forward));
         if(hitObject){
-            Debug.Log("Mouse Button clicked");
             tileController = hitObject.transform.GetComponent<TilePallerController>();
             DisplayAtom(tileController);
         }

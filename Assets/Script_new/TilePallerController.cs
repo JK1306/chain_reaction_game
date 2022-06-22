@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,11 +19,6 @@ public class TilePallerController : MonoBehaviour
         collidedObjectDirection = new List<AtomMoveDirection>();
         upDirection = transform.up;
         rightDirection = transform.right;
-        // Debug.Log("In start : ");
-        // Debug.Log("Up : "+(-transform.up));
-        // Debug.Log("Down : "+(-transform.right));
-        // Debug.Log("Left : "+transform.left);
-        // Debug.Log("Right : "+transform.right);
     }
 
     void DestroyChild(){
@@ -48,28 +44,31 @@ public class TilePallerController : MonoBehaviour
         spawnedObject.StartMovement(ChainGameController.instance.atomMovementSpeed, AtomMoveDirection.Right);
     }
 
+    bool CompareVector(Vector3 vector1, Vector3 vector2){
+        if(Convert.ToInt32(vector1.x) == Convert.ToInt32(vector2.x) && Convert.ToInt32(vector1.y) == Convert.ToInt32(vector2.y) && Convert.ToInt32(vector1.z) == Convert.ToInt32(vector2.z)){
+            return true;
+        }
+        return false;
+    }
+
     void GetDirection(Vector3 otherAtomDirection){
-        Debug.Log("Other Gameobject : "+otherAtomDirection);
-        Debug.Log("Down : "+(-(transform.up.normalized)));
-        Debug.Log("tranform up : "+(-(transform.up.normalized) == otherAtomDirection));
-        if(otherAtomDirection.Equals(transform.up.normalized)){
+        if(CompareVector(otherAtomDirection, transform.up.normalized)){
             collidedObjectDirection.Add(AtomMoveDirection.Top);
-        }else if(otherAtomDirection.Equals(-(transform.up.normalized))){
+        }else if(CompareVector(otherAtomDirection, -(transform.up.normalized))){
             collidedObjectDirection.Add(AtomMoveDirection.Bottom);
-        }else if(otherAtomDirection.Equals(transform.right.normalized)){
+        }else if(CompareVector(otherAtomDirection, transform.right.normalized)){
             collidedObjectDirection.Add(AtomMoveDirection.Right);
-        }else if(otherAtomDirection.Equals(-(transform.right.normalized))){
+        }else if(CompareVector(otherAtomDirection, -(transform.right.normalized))){
             collidedObjectDirection.Add(AtomMoveDirection.Left);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(!execute) { return; }
+        // if(!execute) { return; }
         if(other.gameObject.TryGetComponent(out TilePallerController _)){
             objectDirection = other.gameObject.transform.position - transform.position;
             objectDirection.Normalize();
             GetDirection(objectDirection);
-            Debug.Log(gameObject.name+" Collision Detected : "+other.gameObject.name+" Direction : "+objectDirection, other.gameObject);
         }
     }
 }
