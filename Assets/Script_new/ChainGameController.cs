@@ -11,6 +11,7 @@ public class ChainGameController : MonoBehaviour
     GameObject instantiatedObject;
     TilePallerController tileController;
     public static ChainGameController instance;
+    int clickCount;
 
     private void Start() {
         if(instance == null){
@@ -18,6 +19,7 @@ public class ChainGameController : MonoBehaviour
         }else{
             Destroy(gameObject);
         }
+        clickCount=0;
     }
 
     private void Update() {
@@ -28,6 +30,11 @@ public class ChainGameController : MonoBehaviour
 
     public void DisplayAtom(TilePallerController tileController){
         tileController.IncreaseAtomCount();
+        if(clickCount%2 == 0){
+            tileController.applyColor = Color.red;
+        }else{
+            tileController.applyColor = Color.yellow;
+        }
         switch(tileController.atomCount){
             case 1:
                 tileController.SetTileChild(singleAtom);
@@ -50,6 +57,7 @@ public class ChainGameController : MonoBehaviour
         RaycastHit2D hitObject = Physics2D.Raycast(clickedPosition, transform.TransformDirection(Vector3.forward));
         if(hitObject){
             tileController = hitObject.transform.GetComponent<TilePallerController>();
+            clickCount++;
             DisplayAtom(tileController);
         }
     }

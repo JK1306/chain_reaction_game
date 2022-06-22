@@ -8,6 +8,7 @@ public class TilePallerController : MonoBehaviour
     public int atomCount { get; private set; }
     public AtomController movingAtom;
     public List<AtomMoveDirection> collidedObjectDirection;
+    public Color applyColor;
     GameObject instantiatedObject;
     AtomController spawnedObject;
     int childCount;
@@ -37,6 +38,7 @@ public class TilePallerController : MonoBehaviour
             ReleaseAtom();
         }else{
             instantiatedObject = Instantiate(atomGameObject, gameObject.transform);
+            ApplyColorToChild(instantiatedObject);
         }
     }
 
@@ -45,8 +47,20 @@ public class TilePallerController : MonoBehaviour
         ResetAtomCount();
         foreach(AtomMoveDirection direction in collidedObjectDirection){
             spawnedObject = Instantiate<AtomController>(movingAtom, gameObject.transform);
+            ApplyColorToChild(spawnedObject.gameObject);
             spawnedObject.StartMovement(ChainGameController.instance.atomMovementSpeed, direction);
         }
+    }
+
+    void ApplyColorToChild(GameObject childObject){
+        if(childObject.GetComponent<SpriteRenderer>()){
+            childObject.GetComponent<SpriteRenderer>().color = applyColor;
+        }else{
+            for(int i=0; i<childObject.transform.childCount; i++){
+                ApplyColorToChild(childObject.transform.GetChild(i).gameObject);
+            }
+        }
+
     }
 
     void ResetAtomCount(){
