@@ -8,7 +8,6 @@ public class TilePallerController : MonoBehaviour
     public int atomCount { get; private set; }
     public AtomController movingAtom;
     public List<AtomMoveDirection> collidedObjectDirection;
-    public bool execute;
     GameObject instantiatedObject;
     AtomController spawnedObject;
     int childCount;
@@ -34,14 +33,25 @@ public class TilePallerController : MonoBehaviour
 
     public void SetTileChild(GameObject atomGameObject){
         DestroyChild();
-        instantiatedObject = Instantiate(atomGameObject, gameObject.transform);
+        if(atomCount == collidedObjectDirection.Count){
+            ReleaseAtom();
+        }else{
+            instantiatedObject = Instantiate(atomGameObject, gameObject.transform);
+        }
     }
 
-    public void ResetAtomCount(){
+    public void ReleaseAtom()
+    {
+        ResetAtomCount();
+        foreach(AtomMoveDirection direction in collidedObjectDirection){
+            spawnedObject = Instantiate<AtomController>(movingAtom, gameObject.transform);
+            spawnedObject.StartMovement(ChainGameController.instance.atomMovementSpeed, direction);
+        }
+    }
+
+    void ResetAtomCount(){
         atomCount = 0;
         DestroyChild();
-        spawnedObject = Instantiate<AtomController>(movingAtom, gameObject.transform);
-        spawnedObject.StartMovement(ChainGameController.instance.atomMovementSpeed, AtomMoveDirection.Right);
     }
 
     bool CompareVector(Vector3 vector1, Vector3 vector2){
@@ -64,7 +74,6 @@ public class TilePallerController : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        // if(!execute) { return; }
         if(other.gameObject.TryGetComponent(out TilePallerController _)){
             objectDirection = other.gameObject.transform.position - transform.position;
             objectDirection.Normalize();

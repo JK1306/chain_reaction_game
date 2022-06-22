@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7295824071374124554}
   - component: {fileID: 7295824071374124555}
   - component: {fileID: 7475962805944415345}
-  - component: {fileID: 5638448361891206183}
   - component: {fileID: 4498155056466901657}
+  - component: {fileID: 5638448361891206183}
   m_Layer: 0
   m_Name: Tile_pallet
   m_TagString: Untagged
@@ -110,20 +110,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
---- !u!114 &5638448361891206183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7295824071374124565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b18d94813d84010409323297ae8f4455, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movingAtom: {fileID: 6915435041941151380, guid: 9fa813007cc0acb488fa75d9dc54e629,
-    type: 3}
 --- !u!50 &4498155056466901657
 Rigidbody2D:
   serializedVersion: 4
@@ -145,3 +131,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5638448361891206183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295824071374124565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18d94813d84010409323297ae8f4455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingAtom: {fileID: 6915435041941151380, guid: 9fa813007cc0acb488fa75d9dc54e629,
+    type: 3}
+  collidedObjectDirection: 

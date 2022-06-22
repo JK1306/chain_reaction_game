@@ -38,8 +38,8 @@ public class ChainGameController : MonoBehaviour
             case 3:
                 tileController.SetTileChild(tripleAtom);
                 break;
-            default:
-                tileController.ResetAtomCount();
+            case 4:
+                tileController.ReleaseAtom();
                 break;
         }
     }
