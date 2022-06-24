@@ -12,6 +12,7 @@ public class ChainGameController : MonoBehaviour
     TilePallerController tileController;
     public static ChainGameController instance;
     int clickCount;
+    Color recentAppliedColor;
 
     private void Start() {
         if(instance == null){
@@ -31,10 +32,11 @@ public class ChainGameController : MonoBehaviour
     public void DisplayAtom(TilePallerController tileController){
         tileController.IncreaseAtomCount();
         if(clickCount%2 == 0){
-            tileController.applyColor = Color.red;
+            recentAppliedColor = Color.red;
         }else{
-            tileController.applyColor = Color.yellow;
+            recentAppliedColor = Color.yellow;
         }
+        tileController.applyColor = recentAppliedColor;
         switch(tileController.atomCount){
             case 1:
                 tileController.SetTileChild(singleAtom);
@@ -50,6 +52,15 @@ public class ChainGameController : MonoBehaviour
                 break;
         }
     }
+
+    bool CheckRRecentAppliedColor(TilePallerController tileObject){
+        Debug.Log(tileObject.applyColor);
+        Debug.Log("Recent Applied Color : "+recentAppliedColor);
+        if(tileObject.applyColor == recentAppliedColor){
+            return true;
+        }
+        return false;
+    }
     
     void MouseClicked(){
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -57,8 +68,10 @@ public class ChainGameController : MonoBehaviour
         RaycastHit2D hitObject = Physics2D.Raycast(clickedPosition, transform.TransformDirection(Vector3.forward));
         if(hitObject){
             tileController = hitObject.transform.GetComponent<TilePallerController>();
-            clickCount++;
-            DisplayAtom(tileController);
+            if(hitObject.transform.childCount == 0 || !CheckRRecentAppliedColor(tileController)){
+                clickCount++;
+                DisplayAtom(tileController);
+            }
         }
     }
 }

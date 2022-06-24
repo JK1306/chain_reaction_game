@@ -146,3 +146,4 @@ MonoBehaviour:
   movingAtom: {fileID: 6915435041941151380, guid: 9fa813007cc0acb488fa75d9dc54e629,
     type: 3}
   collidedObjectDirection: 
+  applyColor: {r: 0, g: 0, b: 0, a: 0}
