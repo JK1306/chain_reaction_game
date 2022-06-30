@@ -53,9 +53,7 @@ public class ChainGameController : MonoBehaviour
         }
     }
 
-    bool CheckRRecentAppliedColor(TilePallerController tileObject){
-        Debug.Log(tileObject.applyColor);
-        Debug.Log("Recent Applied Color : "+recentAppliedColor);
+    bool CheckRecentAppliedColor(TilePallerController tileObject){
         if(tileObject.applyColor == recentAppliedColor){
             return true;
         }
@@ -68,7 +66,7 @@ public class ChainGameController : MonoBehaviour
         RaycastHit2D hitObject = Physics2D.Raycast(clickedPosition, transform.TransformDirection(Vector3.forward));
         if(hitObject){
             tileController = hitObject.transform.GetComponent<TilePallerController>();
-            if(hitObject.transform.childCount == 0 || !CheckRRecentAppliedColor(tileController)){
+            if(hitObject.transform.childCount == 0 || !CheckRecentAppliedColor(tileController)){
                 clickCount++;
                 DisplayAtom(tileController);
             }
