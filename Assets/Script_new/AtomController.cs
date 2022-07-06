@@ -9,6 +9,7 @@ public class AtomController : MonoBehaviour
     bool canMove;
     AtomMoveDirection movementDir;
     TilePallerController tileCouter;
+
     public void StartMovement(float speed, AtomMoveDirection direction){
         this.movementSpeed = speed;
         this.movementDir = direction;
